@@ -17,15 +17,18 @@ import javax.naming.NamingException;
  */
 public class ServiceLocator {
     
-    public static <T> T lookup(String resource) {
+    private static final String SERVICE_REMOTE = ""; 
+    
+    public static <T> T lookup() {
+        
         try {
             Properties properties = new Properties();
             properties.put(InitialContext.INITIAL_CONTEXT_FACTORY,
                     "com.sun.enterprise.naming.SerialInitContextFactory");
-            properties.setProperty("org.omg.CORBA.ORBInitialHost", "coreContato");
+            properties.setProperty("org.omg.CORBA.ORBInitialHost", "localhost");
             properties.setProperty("org.omg.CORBA.ORBInitialPort", "3700");
             InitialContext context = new InitialContext(properties);
-            return (T) context.lookup(resource);
+            return (T) context.lookup(SERVICE_REMOTE);
         } catch (NamingException ex) {
             Logger.getLogger(ServiceLocator.class.getName()).log(Level.SEVERE, null, ex);
         }
