@@ -6,18 +6,15 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
         <h:form>
             <h:outputLabel for="nome" value="Nome: "/>
-            <h:inputText id="nome" value="#{controllerContato.contato.nome}" />
+            <h:inputText id="nome" value="${controllerContato.contato.nome}" />
             <h:outputLabel for="email" value="Email: "/>
-            <h:inputText id="email" value="#{controllerContato.contato.email}" />
+            <h:inputText id="email" value="${controllerContato.contato.email}" />
             <h:outputLabel for="telefone" value="Telefone: "/>
-            <h:inputText id="telefone" value="#{controllerContato.contato.telefone}" />
-            
-            <div align="right">
-                <h:commandButton value="Salvar" action="#{controllerContato.cadastrar()}"></h:commandButton>
-            </div>
+            <h:inputText id="telefone" value="${controllerContato.contato.telefone}" />
+
+            <h:commandButton value="Salvar" action="${controllerContato.cadastrar()}"></h:commandButton>
         </h:form>
     </h:body>
 </html>

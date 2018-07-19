@@ -8,6 +8,7 @@ package com.mycompany.jsfcontato.controller;
 import com.mycompany.sharedcontato.Contato;
 import com.mycompany.sharedcontato.ServiceContato;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -33,7 +34,12 @@ public class controllerContato implements Serializable{
     
     
     public void cadastrar() {
+        contato.setDataNascimento(LocalDate.now());
         this.service.create(contato);
+        //limpando
+        contato.setNome("");
+        contato.setEmail("");
+        contato.setTelefone("");
         
     }
 

@@ -8,6 +8,7 @@ package com.mycompany.corecontato.infra;
 import com.mycompany.sharedcontato.Contato;
 import com.mycompany.sharedcontato.ServiceContato;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
@@ -17,9 +18,10 @@ import javax.ejb.Stateless;
  */
 @Stateless
 @Remote(ServiceContato.class)
-public class ServiceContatoC implements ServiceContato{
-    
-    private ContatoDaoC dao = new ContatoDaoC();
+public class ServiceContatoC implements ServiceContato {
+ 
+    @EJB
+    private ContatoDao dao;
 
     @Override
     public void create(Contato contato) {

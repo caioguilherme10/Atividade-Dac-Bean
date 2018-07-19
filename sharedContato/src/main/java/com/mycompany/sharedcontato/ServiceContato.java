@@ -18,5 +18,4 @@ public interface ServiceContato {
     void delete(Contato contato);
     List<Contato> listarPorNome();
     Contato buscarPorNome(String nome);
-    
 }
