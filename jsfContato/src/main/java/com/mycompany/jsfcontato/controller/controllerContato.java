@@ -43,13 +43,20 @@ public class controllerContato implements Serializable{
         
     }
 
-    public void editar(Contato contato) {
+    public void editar() {
+        contato.setDataNascimento(LocalDate.now());
         this.service.update(contato);
+         //limpando
+        contato.setNome("");
+        contato.setEmail("");
+        contato.setTelefone("");
     }
 
     
     public void excluir(Contato contato) {
+        System.out.println("click antes");
         this.service.delete(contato);
+        System.out.println("click depois");
     }
 
     
