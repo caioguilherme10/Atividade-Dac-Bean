@@ -22,7 +22,7 @@ public class Conexao {
     public Connection init() {
         try {
             Class.forName("org.postgresql.Driver");
-            return connection = DriverManager.getConnection("jdbc:postgresql://host-banco:5432/dac-bean", "postgres", "postgres");
+            return connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/dac-bean", "postgres", "123");
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
         }

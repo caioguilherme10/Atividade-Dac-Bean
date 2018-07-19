@@ -7,22 +7,32 @@ package com.mycompany.jsfcontato.controller;
 
 import com.mycompany.sharedcontato.Contato;
 import com.mycompany.sharedcontato.ServiceContato;
+import java.io.Serializable;
 import java.util.List;
-import javax.faces.bean.SessionScoped;
+import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+
 
 /**
  *
  * @author ifpb
  */
+
 @Named
-@SessionScoped
-public class controllerContato {
+@RequestScoped
+public class controllerContato implements Serializable{
     
-    private Contato Contato = new Contato();
+    private Contato contato = new Contato();
+    @EJB
     private ServiceContato service;
+
+    public controllerContato() {
+    }
     
-    public void cadastrar(Contato contato) {
+    
+    
+    public void cadastrar() {
         this.service.create(contato);
         
     }
@@ -45,4 +55,14 @@ public class controllerContato {
     public Contato buscarPorNome(String nome) {
         return service.buscarPorNome(nome);
     }
+
+    public Contato getContato() {
+        return contato;
+    }
+
+    public void setContato(Contato contato) {
+        this.contato = contato;
+    }
+    
+    
 }

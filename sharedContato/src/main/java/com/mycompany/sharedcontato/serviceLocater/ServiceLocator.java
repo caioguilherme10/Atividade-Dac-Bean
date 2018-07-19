@@ -17,7 +17,7 @@ import javax.naming.NamingException;
  */
 public class ServiceLocator {
     
-    private static final String SERVICE_REMOTE = ""; 
+    private static final String SERVICE_REMOTE = "java:global/coreContato/ServiceContatoC"; 
     
     public static <T> T lookup() {
         

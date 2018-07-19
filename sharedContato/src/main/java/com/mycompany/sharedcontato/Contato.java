@@ -5,6 +5,7 @@
  */
 package com.mycompany.sharedcontato;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ import java.util.Objects;
  *
  * @author ifpb
  */
-public class Contato {
+public class Contato  implements Serializable{
     
     private String nome;
     private String email;

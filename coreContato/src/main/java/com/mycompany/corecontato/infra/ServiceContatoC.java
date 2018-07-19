@@ -5,13 +5,10 @@
  */
 package com.mycompany.corecontato.infra;
 
-import com.mycompany.corecontato.infra.ContatoDaoC;
-import com.mycompany.sharedcontato.Contato;
 import com.mycompany.sharedcontato.Contato;
 import com.mycompany.sharedcontato.ServiceContato;
 import java.util.List;
 import javax.ejb.Remote;
-import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 
 /**
@@ -19,7 +16,7 @@ import javax.ejb.Stateless;
  * @author ifpb
  */
 @Stateless
-@Remote(ServiceContatoC.class)
+@Remote(ServiceContato.class)
 public class ServiceContatoC implements ServiceContato{
     
     private ContatoDaoC dao = new ContatoDaoC();
