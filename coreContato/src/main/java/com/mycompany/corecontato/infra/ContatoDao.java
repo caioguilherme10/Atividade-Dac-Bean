@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.sharedcontato;
+package com.mycompany.corecontato.infra;
 
+import com.mycompany.sharedcontato.Contato;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ public interface ContatoDao {
     void cadastrar(Contato contato);
     void editar(Contato contato);
     void excluir(Contato contato);
-    List<Contato> listarTodos();
+    List<Contato> listarOrdernadoPorNome();
     Contato buscarPorNome(String nome);
     
 }

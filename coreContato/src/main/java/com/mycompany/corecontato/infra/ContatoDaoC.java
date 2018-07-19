@@ -7,7 +7,6 @@ package com.mycompany.corecontato.infra;
 
 import com.mycompany.corecontato.conexao.Conexao;
 import com.mycompany.sharedcontato.Contato;
-import com.mycompany.sharedcontato.ContatoDao;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,15 +16,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
 
 /**
  *
  * @author ifpb
  */
-@Stateless
-@Remote(ContatoDao.class)
 public class ContatoDaoC implements ContatoDao{
 
     private final Conexao conexao;
@@ -87,7 +82,7 @@ public class ContatoDaoC implements ContatoDao{
     }
 
     @Override
-    public List<Contato> listarTodos() {
+    public List<Contato> listarOrdernadoPorNome() {
         
         PreparedStatement stmt = null;
         try {

@@ -5,39 +5,43 @@
  */
 package com.mycompany.corecontato.infra;
 
+import com.mycompany.corecontato.infra.ContatoDaoC;
 import com.mycompany.sharedcontato.Contato;
-import com.mycompany.sharedcontato.ContatoDao;
+import com.mycompany.sharedcontato.Contato;
+import com.mycompany.sharedcontato.ServiceContato;
 import java.util.List;
 import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author ifpb
  */
-@Stateful
-public class ServiceContato implements ContatoDao{
+@Stateless
+public class ServiceContatoC implements ServiceContato{
     
     private ContatoDaoC dao = new ContatoDaoC();
 
     @Override
-    public void cadastrar(Contato contato) {
+    public void create(Contato contato) {
         this.dao.cadastrar(contato);
         
     }
 
     @Override
-    public void editar(Contato contato) {
+    public void update(Contato contato) {
         this.dao.editar(contato);
     }
 
     @Override
-    public void excluir(Contato contato) {
+    public void delete(Contato contato) {
         this.dao.excluir(contato);
     }
 
     @Override
-    public List<Contato> listarTodos() {
-        return dao.listarTodos();
+    public List<Contato> listarPorNome() {
+        return dao.listarOrdernadoPorNome();
+        
     }
 
     @Override
