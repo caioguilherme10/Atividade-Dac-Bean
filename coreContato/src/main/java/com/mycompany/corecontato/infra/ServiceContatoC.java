@@ -19,14 +19,14 @@ import javax.ejb.Stateless;
 @Stateless
 @Remote(ServiceContato.class)
 public class ServiceContatoC implements ServiceContato {
- 
+
     @EJB
     private ContatoDao dao;
 
     @Override
     public void create(Contato contato) {
         this.dao.cadastrar(contato);
-        
+
     }
 
     @Override
@@ -40,14 +40,13 @@ public class ServiceContatoC implements ServiceContato {
     }
 
     @Override
-    public List<Contato> listarPorNome() {
-        return dao.listarOrdernadoPorNome();
-        
+    public List<Contato> listarTodos() {
+        return dao.listarTodos();
     }
 
     @Override
-    public Contato buscarPorNome(String nome) {
-        return dao.buscarPorNome(nome);
+    public List<Contato> listarPorNome(String nome) {
+        return dao.listarPorNome(nome);
     }
-    
+
 }

@@ -13,11 +13,15 @@ import java.util.List;
  * @author ifpb
  */
 public interface ContatoDao {
-    
+
     void cadastrar(Contato contato);
+
     void editar(Contato contato);
+
     void excluir(Contato contato);
-    List<Contato> listarOrdernadoPorNome();
-    Contato buscarPorNome(String nome);
-    
+
+    List<Contato> listarTodos();
+
+    List<Contato> listarPorNome(String nome);
+
 }

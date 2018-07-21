@@ -16,6 +16,6 @@ public interface ServiceContato {
     void create(Contato contato);
     void update(Contato contato);
     void delete(Contato contato);
-    List<Contato> listarPorNome();
-    Contato buscarPorNome(String nome);
+    List<Contato> listarTodos();
+    List<Contato> listarPorNome(String nome);
 }

@@ -25,17 +25,17 @@ import javax.ejb.Stateless;
  */
 @Stateless
 @Local
-public class ContatoDaoC implements ContatoDao{
+public class ContatoDaoC implements ContatoDao {
 
     private final Conexao conexao;
 
     public ContatoDaoC() {
         conexao = new Conexao();
     }
-    
+
     @Override
     public void cadastrar(Contato contato) {
-        
+
         PreparedStatement stmt = null;
         String sql = "INSERT INTO contato (nome, email, telefone, datanascimento) VALUES (?,?,?,?)";
         try {
@@ -45,17 +45,17 @@ public class ContatoDaoC implements ContatoDao{
             stmt.setString(2, contato.getEmail());
             stmt.setString(3, contato.getTelefone());
             stmt.setDate(4, Date.valueOf(contato.getDataNascimento()));
-            
+
             stmt.executeUpdate();
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(ContatoDaoC.class.getName()).log(Level.SEVERE, null, ex);
-}
+        }
     }
 
     @Override
     public void editar(Contato contato) {
-        
+
         try {
             String sql = "UPDATE contato SET nome = ?, telefone = ? , datanascimento = ? WHERE email = ?";
             PreparedStatement stmt = conexao.init().prepareStatement(sql);
@@ -67,12 +67,12 @@ public class ContatoDaoC implements ContatoDao{
         } catch (SQLException ex) {
             Logger.getLogger(ContatoDaoC.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     @Override
     public void excluir(Contato contato) {
-        
+
         PreparedStatement stmt = null;
         try {
             String sql = "DELETE FROM contato WHERE email = ?";
@@ -82,16 +82,16 @@ public class ContatoDaoC implements ContatoDao{
         } catch (SQLException ex) {
             Logger.getLogger(ContatoDaoC.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     @Override
-    public List<Contato> listarOrdernadoPorNome() {
-        
+    public List<Contato> listarPorNome(String nome) {
         PreparedStatement stmt = null;
         try {
-            String sql = "SELECT * FROM contato order by nome asc";
+            String sql = "SELECT * FROM contato WHERE nome = ?";
             stmt = conexao.init().prepareStatement(sql);
+            stmt.setString(1, nome);
         } catch (SQLException ex) {
             Logger.getLogger(ContatoDaoC.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -102,37 +102,11 @@ public class ContatoDaoC implements ContatoDao{
         }
         
         return Collections.emptyList();
+
     }
 
-    @Override
-    public Contato buscarPorNome(String nome) {
-        
-        PreparedStatement stmt = null;
-        try {
-            String sql = "SELECT * FROM contato WHERE nome = ?";
-            
-            stmt = conexao.init().prepareStatement(sql);
-            stmt.setString(1, nome);
-            
-            ResultSet resultSet = stmt.executeQuery();
-            
-            Contato c = new Contato(
-                    resultSet.getString("nome"),
-                    resultSet.getString("email"),
-                    resultSet.getString("telefone"),
-                    resultSet.getDate("datanascimento").toLocalDate()
-            );
-            
-            return c;
-        } catch (SQLException ex) {
-            Logger.getLogger(ContatoDaoC.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return null;
-    }
+    private List<Contato> criarContato(PreparedStatement stmt) throws SQLException {
 
-    private List<Contato> criarContato(PreparedStatement stmt) throws SQLException{
-        
         List<Contato> contatos = new ArrayList<>();
         ResultSet resultSet = stmt.executeQuery();
         while (resultSet.next()) {
@@ -147,5 +121,23 @@ public class ContatoDaoC implements ContatoDao{
 
         return contatos;
     }
-    
+
+    @Override
+    public List<Contato> listarTodos() {
+        PreparedStatement stmt = null;
+        try {
+            String sql = "SELECT * FROM contato order by nome asc";
+            stmt = conexao.init().prepareStatement(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(ContatoDaoC.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            return criarContato(stmt);
+        } catch (SQLException ex) {
+            Logger.getLogger(ContatoDaoC.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return Collections.emptyList();
+    }
+
 }
