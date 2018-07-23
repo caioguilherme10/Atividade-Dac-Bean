@@ -12,5 +12,6 @@
         <module>coreContato</module>
         <module>jsfContato</module>
         <module>sharedContato</module>
+        <module>jseContato</module>
     </modules>
 </project>

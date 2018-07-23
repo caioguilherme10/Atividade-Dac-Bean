@@ -24,7 +24,7 @@ import javax.ejb.Stateless;
  * @author ifpb
  */
 @Stateless
-@Local
+@Local(ContatoDao.class)
 public class ContatoDaoC implements ContatoDao {
 
     private final Conexao conexao;

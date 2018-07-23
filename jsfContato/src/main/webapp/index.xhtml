@@ -22,7 +22,7 @@
             <h:commandButton class="waves-effect waves-light btn" value="Salvar Editar" action="${controllerContato.editar()}"></h:commandButton>
         </h:form>
         <br/><br/><br/><br/>
-        
+
         <h3 align="center">Contatos Cadastrados</h3>
 
         <h:dataTable id="tabela" value="#{controllerContato.listarTodos()}" var="contato">
@@ -54,6 +54,32 @@
                 </h:form>
             </h:column>
         </h:dataTable>
+
+
+        <h3 align="center">Listar por nome</h3>
+        <h:form>
+            <h:inputText id="nome" value="${controllerContato.busca}" />
+            <h:commandButton class="waves-effect waves-light btn" value="buscar" action="#{controllerContato.listarPorNome()}"></h:commandButton>
+            <br/><br/>
+            <h:dataTable id="tabelaPorNome" value="#{controllerContato.contatos}" var="contatoNome">
+                <h:column>
+                    <f:facet name="header">Nome:</f:facet>
+                        #{contatoNome.nome}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Email:</f:facet>
+                        #{contatoNome.email}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Telefone:</f:facet>
+                        #{contatoNome.telefone}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Data de nascimento:</f:facet>
+                        #{contatoNome.dataNascimento}
+                </h:column>
+            </h:dataTable>
+        </h:form>
 
     </h:body>
 </html>
