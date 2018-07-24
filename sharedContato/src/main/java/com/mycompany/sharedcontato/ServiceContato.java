@@ -13,4 +13,5 @@ public interface ServiceContato {
     void delete(Contato contato);
     List<Contato> listarTodos();
     List<Contato> listarPorNome(String nome);
+    List<Contato> listarPorInicial(String inicial);
 }

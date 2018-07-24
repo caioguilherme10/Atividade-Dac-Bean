@@ -68,6 +68,10 @@ public class controllerContato implements Serializable {
         contatos = this.service.listarPorNome(busca);
         return contatos;
     }
+    
+    public List<Contato> listarPorIncial(String inicial) {
+        return service.listarPorInicial(inicial);
+    }
 
     public Contato getContato() {
         return contato;
@@ -92,4 +96,5 @@ public class controllerContato implements Serializable {
     public void setContatos(List<Contato> contatos) {
         this.contatos = contatos;
     }
+    
 }

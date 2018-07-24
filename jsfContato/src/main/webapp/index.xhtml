@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Docker-JSF</title>
         <link rel="stylesheet" type="text/css" href="css/materialize.min.css"/>
@@ -80,6 +81,31 @@
                 </h:column>
             </h:dataTable>
         </h:form>
+        <br/><br/><br/>
+        <h3>Agrupar por Inicial</h3>
+        <h:form>
+            <c:set var="alphabet" value="${['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']}" scope="application" />
+            <c:forEach items="${alphabet}" var="inicial">
+                <h:dataTable value="${controllerContato.listarPorIncial(inicial)}"  var="contato" 
+                             rendered="${not empty controllerContato.listarPorIncial(inicial)}">
+                    <h:column>
+                        <f:facet name="header"><h:outputText value="${inicial}" /></f:facet>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Nome</f:facet>${contato.nome}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Email</f:facet>${contato.email}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Telefone</f:facet>${contato.telefone}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Data de Nascimento</f:facet>${contato.dataNascimento}
+                    </h:column>
+                </h:dataTable>
+            </c:forEach>
+        </h:form> 
 
     </h:body>
 </html>

@@ -24,4 +24,5 @@ public interface ContatoDao {
 
     List<Contato> listarPorNome(String nome);
 
+    List<Contato> listarPorInicial(String inicial);
 }

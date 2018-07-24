@@ -140,4 +140,23 @@ public class ContatoDaoC implements ContatoDao {
         return Collections.emptyList();
     }
 
+    @Override
+    public List<Contato> listarPorInicial(String inicial) {
+    PreparedStatement stmt = null;
+        try {
+            String sql = "SELECT * FROM contato WHERE nome ILIKE ?";
+            stmt = conexao.init().prepareStatement(sql);
+            stmt.setString(1, inicial + "%");
+        } catch (SQLException ex) {
+            Logger.getLogger(ContatoDaoC.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            return criarContato(stmt);
+        } catch (SQLException ex) {
+            Logger.getLogger(ContatoDaoC.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return Collections.emptyList();
+    }
+
 }

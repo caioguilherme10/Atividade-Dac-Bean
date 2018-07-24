@@ -49,4 +49,9 @@ public class ServiceContatoC implements ServiceContato {
         return dao.listarPorNome(nome);
     }
 
+    @Override
+    public List<Contato> listarPorInicial(String inicial) {
+        return dao.listarPorInicial(inicial);
+    }
+
 }
