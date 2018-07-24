@@ -89,9 +89,9 @@ public class ContatoDaoC implements ContatoDao {
     public List<Contato> listarPorNome(String nome) {
         PreparedStatement stmt = null;
         try {
-            String sql = "SELECT * FROM contato WHERE nome = ?";
+            String sql = "SELECT * FROM contato WHERE nome ILIKE ?;";
             stmt = conexao.init().prepareStatement(sql);
-            stmt.setString(1, nome);
+            stmt.setString(1, nome + "%");
         } catch (SQLException ex) {
             Logger.getLogger(ContatoDaoC.class.getName()).log(Level.SEVERE, null, ex);
         }

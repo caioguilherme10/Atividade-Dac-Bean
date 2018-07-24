@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * @author ifpb
  */
 public class Conexao {
-    
+
     private Connection connection;
 
     public Connection init() {
@@ -28,8 +28,8 @@ public class Conexao {
         }
         return null;
     }
-    
-    public  static void fecharConexao(Connection c) throws SQLException{
+
+    public static void fecharConexao(Connection c) throws SQLException {
         c.close();
-}
+    }
 }

@@ -12,7 +12,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
@@ -28,8 +27,8 @@ public class controllerContato implements Serializable {
     private List<Contato> contatos;
     private String busca;
 
-    @EJB
-    private ServiceContato service;
+    //@EJB
+    private ServiceContato service = new ServiceLocator().lookup();
 
     @PostConstruct
     public void init() {
