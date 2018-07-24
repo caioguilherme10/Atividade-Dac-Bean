@@ -18,9 +18,9 @@
             <h:outputLabel for="telefone" value="Telefone: "/>
             <h:inputText id="telefone" value="${controllerContato.contato.telefone}" />
 
-            <h:commandButton class="waves-effect waves-light btn" value="Salvar" action="${controllerContato.cadastrar()}"></h:commandButton>
+            <h:commandButton class="waves-effect waves-light btn" value="Salvar" rendered="${not controllerContato.modoEditando}" action="${controllerContato.cadastrar()}"></h:commandButton>
             <br/><br/>
-            <h:commandButton class="waves-effect waves-light btn" value="Salvar Editar" action="${controllerContato.editar()}"></h:commandButton>
+            <h:commandButton class="waves-effect waves-light btn" value="Salvar Editar" rendered="${controllerContato.modoEditando}" action="${controllerContato.editar()}"></h:commandButton>
         </h:form>
         <br/><br/><br/><br/>
 

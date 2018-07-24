@@ -26,6 +26,7 @@ public class controllerContato implements Serializable {
     private Contato contato = new Contato();
     private List<Contato> contatos;
     private String busca;
+    private boolean modoEditando = false;
 
     //@EJB
     private ServiceContato service = new ServiceLocator().lookup();
@@ -38,7 +39,7 @@ public class controllerContato implements Serializable {
     public void cadastrar() {
         contato.setDataNascimento(LocalDate.now());
         this.service.create(contato);
-        
+
         //limpando
         contato.setNome("");
         contato.setEmail("");
@@ -49,7 +50,8 @@ public class controllerContato implements Serializable {
     public void editar() {
         contato.setDataNascimento(LocalDate.now());
         this.service.update(contato);
-        
+        this.modoEditando = false;
+
         //limpando
         contato.setNome("");
         contato.setEmail("");
@@ -68,7 +70,7 @@ public class controllerContato implements Serializable {
         contatos = this.service.listarPorNome(busca);
         return contatos;
     }
-    
+
     public List<Contato> listarPorIncial(String inicial) {
         return service.listarPorInicial(inicial);
     }
@@ -78,6 +80,7 @@ public class controllerContato implements Serializable {
     }
 
     public void setContato(Contato contato) {
+        this.modoEditando = true;
         this.contato = contato;
     }
 
@@ -88,7 +91,7 @@ public class controllerContato implements Serializable {
     public void setBusca(String busca) {
         this.busca = busca;
     }
-    
+
     public List<Contato> getContatos() {
         return contatos;
     }
@@ -96,5 +99,9 @@ public class controllerContato implements Serializable {
     public void setContatos(List<Contato> contatos) {
         this.contatos = contatos;
     }
-    
+
+    public boolean isModoEditando() {
+        return modoEditando;
+    }
+
 }
