@@ -7,10 +7,10 @@ package com.mycompany.corecontato.infra;
 
 import com.mycompany.corecontato.conexao.Conexao;
 import com.mycompany.sharedcontato.Contato;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -44,7 +44,7 @@ public class ContatoDaoC implements ContatoDao {
             stmt.setString(1, contato.getNome());
             stmt.setString(2, contato.getEmail());
             stmt.setString(3, contato.getTelefone());
-            stmt.setDate(4, Date.valueOf(contato.getDataNascimento()));
+            stmt.setObject(4, contato.getDataNascimento());
 
             stmt.executeUpdate();
 
@@ -61,7 +61,7 @@ public class ContatoDaoC implements ContatoDao {
             PreparedStatement stmt = conexao.init().prepareStatement(sql);
             stmt.setString(1, contato.getNome());
             stmt.setString(2, contato.getTelefone());
-            stmt.setDate(3, Date.valueOf(contato.getDataNascimento()));
+            stmt.setObject(3, contato.getDataNascimento());
             stmt.setString(4, contato.getEmail());
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -114,7 +114,7 @@ public class ContatoDaoC implements ContatoDao {
                     resultSet.getString("nome"),
                     resultSet.getString("email"),
                     resultSet.getString("telefone"),
-                    resultSet.getDate("datanascimento").toLocalDate()
+                    resultSet.getObject("datanascimento", LocalDate.class)
             );
             contatos.add(c);
         }

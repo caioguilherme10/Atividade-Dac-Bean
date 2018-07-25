@@ -37,7 +37,6 @@ public class controllerContato implements Serializable {
     }
 
     public void cadastrar() {
-        contato.setDataNascimento(LocalDate.now());
         this.service.create(contato);
 
         //limpando
@@ -48,9 +47,8 @@ public class controllerContato implements Serializable {
     }
 
     public void editar() {
-        contato.setDataNascimento(LocalDate.now());
         this.service.update(contato);
-        this.modoEditando = false;
+        modoEditando = false;
 
         //limpando
         contato.setNome("");
@@ -72,7 +70,8 @@ public class controllerContato implements Serializable {
     }
 
     public List<Contato> listarPorIncial(String inicial) {
-        return service.listarPorInicial(inicial);
+        return this.service.listarPorInicial(inicial);
+
     }
 
     public Contato getContato() {
@@ -80,7 +79,7 @@ public class controllerContato implements Serializable {
     }
 
     public void setContato(Contato contato) {
-        this.modoEditando = true;
+        modoEditando = true;
         this.contato = contato;
     }
 
